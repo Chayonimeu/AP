@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Aashepashe | Add Faq</title>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <?php echo $__env->make('backend.layout.header_script', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    </head>
+    <body class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
+            <?php echo $__env->make('backend.layout.header', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <?php echo $__env->make('backend.layout.menu', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+            <div class="content-wrapper">
+                <section class="content">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel-group">
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading panel-style"><i class="fa fa-clone"></i> Add Faq
+                                        <a href="<?php echo e(url()->previous()); ?>" class="pull-right"><i class="fa fa-arrow-circle-left"></i> Go Back</a>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <?php echo $__env->make('backend.layout.message', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                                                <form role="form" method="POST" action="<?php echo e(URL::to('portal/faq/store')); ?>" enctype="multipart/form-data">
+                                                    <?php echo e(csrf_field()); ?>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="question">Question <b style="color: red">*</b></label>
+                                                        <textarea class="form-control" name="question" id="question" required><?php echo e(old('question')); ?></textarea>
+                                                        <?php if($errors->has('question')): ?>
+                                                        <span class="help-block">
+                                                            <strong><i class="fa fa-warning"></i> <?php echo e($errors->first('question')); ?></strong>
+                                                        </span>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label" for="answer">Answer <b style="color: red">*</b></label>
+                                                        <textarea class="form-control" name="answer" id="answer" required><?php echo e(old('answer')); ?></textarea>
+                                                        <?php if($errors->has('answer')): ?>
+                                                        <span class="help-block">
+                                                            <strong><i class="fa fa-warning"></i> <?php echo e($errors->first('answer')); ?></strong>
+                                                        </span>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-primary"><i class="fa fa-check"></i> Submit</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <?php echo $__env->make('backend.layout.footer', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        </div>
+        <?php echo $__env->make('backend.layout.footer_script', \Illuminate\Support\Arr::except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <script src="https://adminlte.io/themes/AdminLTE/bower_components/ckeditor/ckeditor.js">
+        </script>
+        <script>
+            $(document).ready(function () {
+                CKEDITOR.replace('answer');
+            });
+        </script>
+        <script type="text/javascript">
+            $("#faq_active").addClass("active");
+            $("#faq_active").parent().parent().addClass("treeview active");
+            $("#faq_active").parent().addClass("in");
+        </script>
+    </body>
+</html>
